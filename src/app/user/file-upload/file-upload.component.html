@@ -1,0 +1,26 @@
+<div class="login-wrapper" fxLayout="col" fxLayoutAlign="center center">
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>UPLOAD video</mat-card-title>
+    </mat-card-header>
+
+    <form class="login" (submit)="onUpload()">
+      <mat-card-content>
+<!--        <mat-form-field>-->
+          <div class="button-row">
+<!--            <button mat-button color="accent" mat-mini-fab (click)="imgFileInput.click()">-->
+<!--              <mat-icon>attachment</mat-icon> Select a video file-->
+<!--            </button>-->
+            <input type="file" #imgFileInput/></div>
+<!--        </mat-form-field>-->
+      </mat-card-content>
+      <mat-card-content>
+<!--        <mat-form-field>-->
+          <textarea matInput v="description" placeholder="Video description">Detailed video description</textarea>
+<!--        </mat-form-field>-->
+      </mat-card-content>
+      <button mat-stroked-button color="" type="submit" class="btn-block">Upload</button>
+    </form>
+  </mat-card>
+</div>
