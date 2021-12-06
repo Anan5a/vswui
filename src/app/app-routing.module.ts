@@ -9,6 +9,7 @@ import {UserlistComponent} from "./user/userlist/userlist.component";
 import {HomepageContentComponent} from "./user/homepage-content/homepage-content.component";
 import {ProfileComponent} from "./user/profile/profile.component";
 import {FileUploadComponent} from "./user/file-upload/file-upload.component";
+import {PlayerComponent} from "./user/player/player.component";
 
 const routes: Routes = [
   {path:'', component:HomepageContentComponent, pathMatch:'full'},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path:'user/reset', component:ResetFormComponent, pathMatch:'full'},
   {path:'user/upload', component:FileUploadComponent, pathMatch:'full'},
   {path:'user/profile', component:ProfileComponent, pathMatch:'full'},
+  {path:'video/play/:videoID', component:PlayerComponent, pathMatch:'full'},
 
   {path:'admin/users', component:UserlistComponent, pathMatch:'full'},
   {path:'admin/videos', component:UserlistComponent, pathMatch:'full'},

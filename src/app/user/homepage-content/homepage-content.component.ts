@@ -19,6 +19,6 @@ export class HomepageContentComponent implements OnInit {
   }
 
   play() {
-    window.alert('Function not implemented yet')
+    return true
   }
 }

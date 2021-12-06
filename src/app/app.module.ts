@@ -48,6 +48,8 @@ import { ProfileComponent } from './user/profile/profile.component';
 import { HomepageContentComponent } from './user/homepage-content/homepage-content.component';
 import { FileUploadComponent } from './user/file-upload/file-upload.component';
 import {HttpClientModule} from "@angular/common/http";
+import { VideoPlayerComponent } from './user/video-player/video-player.component';
+import { PlayerComponent } from './user/player/player.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +63,8 @@ import {HttpClientModule} from "@angular/common/http";
     ProfileComponent,
     HomepageContentComponent,
     FileUploadComponent,
+    VideoPlayerComponent,
+    PlayerComponent,
   ],
   imports: [
     BrowserModule,
