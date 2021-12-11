@@ -10,31 +10,20 @@
 
           <div fxFlex="30%" fxFlex.sm="95%" fxFlex.xs="95%">
             <div class="profile-card">
-              <img src="assets/user.png" alt="fullName">
+              <img alt="fullName" src="assets/user.png">
 
               <h2 class="title">
-                Username
+                Email: {{ profile.profile.email }}
               </h2>
               <label>
-                user@email.com
+                Since: <b>{{ profile.profile.created_at }}</b>
               </label>
             </div>
           </div>
 
-          <div fxFlex></div>
-
-          <!--          <div fxFlex="65%" fxFlex.sm="95%" fxFlex.xs="950%">-->
-
-
-          <!--            <mat-tab-group>-->
-          <!--              <mat-tab label="Change Password">-->
-          <!--&lt;!&ndash;                <app-change-password></app-change-password>&ndash;&gt;-->
-          <!--              </mat-tab>-->
-          <!--            </mat-tab-group>-->
-
-
-          <!--          </div>-->
-
+          <div fxFlex>
+            Total videos: <b>{{ profile.videoCount }}</b>
+          </div>
         </div>
       </mat-card-content>
     </mat-card>

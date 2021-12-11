@@ -29,10 +29,12 @@
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "./node_modules/video.js/dist/video-js.css",
+              "./node_modules/@silvermine/videojs-quality-selector/dist/css/quality-selector.css",
               "src/styles.css"
             ],
             "scripts": [
-              "./node_modules/video.js/dist/video.js"
+              "./node_modules/video.js/dist/video.js",
+              "./node_modules/@silvermine/videojs-quality-selector/dist/js/silvermine-videojs-quality-selector.min.js"
             ]
           },
           "configurations": {

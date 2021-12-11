@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
+import {AuthServiceService} from "../../auth-service.service";
 
 @Component({
   selector: 'app-reset-form',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResetFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router, private authService:AuthServiceService) { }
 
   ngOnInit(): void {
+    if (this.authService.isLoggedIn()){
+      this.router.navigate(['user/login'])
+    }
   }
 
 }

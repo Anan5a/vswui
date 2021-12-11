@@ -1,0 +1,26 @@
+<div class="mat-elevation-z8">
+  <mat-card>
+    <mat-card-header>
+      <h2>Registered users on website</h2>
+    </mat-card-header>
+    <mat-card-content>
+      <table border="1px" aria-label="Elements" class="full-width-table">
+        <!-- Id Column -->
+        <thead>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Registration date</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let row of users">
+          <td>{{ row.id }}</td>
+          <td>{{ row.email }}</td>
+          <td>{{ row.created_at }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </mat-card-content>
+  </mat-card>
+
+
+</div>

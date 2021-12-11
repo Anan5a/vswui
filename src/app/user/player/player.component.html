@@ -1,6 +1,20 @@
-<mat-grid-list [cols]="breakpoint" rowHeight="" (window:resize)="onResize($event)">
+<mat-grid-list (window:resize)="onResize($event)" [cols]="breakpoint" rowHeight="">
+  <mat-grid-tile>
+    <app-video-player [options]="{poster:'http://127.0.0.1:9001/'+videoData.thumb,fluid:false, autoplay: false, controls: true, sources: videoData.playbackUrlList}"
+                      class="page-center"></app-video-player>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-header>
+        <h2>Title: {{ videoData.title }}<br><small>Uploaded: {{ videoData.uploadTime }}</small></h2>
 
-      <app-video-player [options]="{fluid:false, aspectRatio:'16:9', autoplay: true, controls: true, sources: [{ src: 'https://vjs.zencdn.net/v/oceans.mp4', type: 'video/mp4' }]}"></app-video-player>
+      </mat-card-header>
+      <mat-card-content>
+        <b>Description: </b>{{ videoData.description }}
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
 
 </mat-grid-list>
 

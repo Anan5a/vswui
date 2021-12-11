@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FileUploadService} from "../file-upload.service";
+import {Category} from "../../interface/category";
+import {CategoryListService} from "../../category-list.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-file-upload',
@@ -8,37 +12,71 @@ import {FileUploadService} from "../file-upload.service";
 })
 export class FileUploadComponent implements OnInit {
 
-  // Variable to store shortLink from api response
-  shortLink: string = "";
   loading: boolean = false; // Flag variable
   file: null = null; // Variable to store file
+  categoryList?: Category[]
+  selectedFiles: any = []
+  thumbFile: any = [];
+  upload_str: any = 'Upload';
+
+  uploadGroup = new FormGroup({
+    title: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    desc: new FormControl('', [Validators.required]),
+    fileSource: new FormControl('', [Validators.required]),
+    fileSourceThumb: new FormControl('', [Validators.required]),
+    main_file: new FormControl('', [Validators.required]),
+    thumb: new FormControl('', [Validators.required]),
+    cat: new FormControl('', [Validators.required]),
+  });
 
   // Inject service
-  constructor(private fileUploadService: FileUploadService) { }
+  constructor(private fileUploadService: FileUploadService, private category: CategoryListService, private router:Router) {
+  }
 
   ngOnInit(): void {
+    this.category.getList().subscribe((res) => this.categoryList = res)
   }
 
   // On file Select
-  onChange(event : any) {
-    this.file = event.target.files[0];
+
+  onChange(event: any) {
+
+
   }
 
-  // OnClick of button Upload
-  onUpload() {
-    alert('Whoops! Not implemented yet!\n')
-    return false
 
-    this.loading = !this.loading;
-    console.log(this.file);
-    this.fileUploadService.upload(this.file).subscribe(
+  onUpload() {
+    this.upload_str = 'Uploading...'
+    //@ts-ignore
+    const fval = this.uploadGroup.value
+    this.fileUploadService.upload(this.uploadGroup.get('fileSource')?.value, this.uploadGroup.get('fileSourceThumb')?.value, fval.cat, fval.title, fval.desc).subscribe(
       (event: any) => {
         if (typeof (event) === 'object') {
-
-
-          this.loading = false; // Flag variable
+          this.upload_str = 'Finished!'
+          this.router.navigate(['/user/dashboard'])
         }
       }
     );
+  }
+
+  selectFile(event: any) {
+    this.selectedFiles = event.target.files[0];
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.uploadGroup.patchValue({
+        fileSource: file
+      });
+    }
+  }
+
+  selectThumbFile(event: any) {
+    this.thumbFile = event.target.files[0];
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.uploadGroup.patchValue({
+        fileSourceThumb: file
+      });
+
+    }
   }
 }

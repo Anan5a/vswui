@@ -1,17 +1,17 @@
-<mat-grid-list [cols]="breakpoint" rowHeight="0.9:0.8" (window:resize)="onResize($event)">
-  <mat-grid-tile *ngFor="let i of [0,1,2,3,4,5,6,7,8,9,10]">
+<mat-grid-list (window:resize)="onResize($event)" [cols]="breakpoint" rowHeight="0.9:0.8">
+  <mat-grid-tile *ngFor="let item of videoList">
     <mat-card class="hmcc">
-      <a routerLink="video/play/{{ i }}" (click)="play()">
-      <mat-card-content>
-        <img src="https://picsum.photos/500/350" mat-card-image>
-        <span class="overlay-timecode-right">02:00</span>
-<!--        <span class="overlay-timecode-left"><mat-icon style="height: 12px;top: 5%;">remove_red_eye</mat-icon>8000</span>-->
-      </mat-card-content>
+      <a (click)="play()" routerLink="/video/play/{{ item.videoID }}">
+        <mat-card-content>
+          <img mat-card-image src="//127.0.0.1:9001/{{ item.thumb }}">
+          <span class="overlay-timecode-right">{{ d2tc(item.duration) }}</span>
+          <!--        <span class="overlay-timecode-left"><mat-icon style="height: 12px;top: 5%;">remove_red_eye</mat-icon>8000</span>-->
+        </mat-card-content>
       </a>
-      <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-<!--        <button mat-button>REPORT</button>-->
+      <h3>{{ item.title }}</h3>
+      <mat-card-actions *ngIf="adminAction">
+        <button *ngIf="item.approvalState == 'H'" mat-button style="background: green" (click)="adminActionApprove(item.videoID)">APPROVE</button>
+        <button mat-button style="background: red" (click)="adminActionDelete(item.videoID)">DELETE</button>
       </mat-card-actions>
     </mat-card>
   </mat-grid-tile>

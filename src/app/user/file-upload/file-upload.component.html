@@ -4,23 +4,51 @@
     <mat-card-header>
       <mat-card-title>UPLOAD video</mat-card-title>
     </mat-card-header>
+    <mat-card-content class="">
 
-    <form class="login" (submit)="onUpload()">
-      <mat-card-content>
-<!--        <mat-form-field>-->
-          <div class="button-row">
-<!--            <button mat-button color="accent" mat-mini-fab (click)="imgFileInput.click()">-->
-<!--              <mat-icon>attachment</mat-icon> Select a video file-->
-<!--            </button>-->
-            <input type="file" #imgFileInput/></div>
-<!--        </mat-form-field>-->
-      </mat-card-content>
-      <mat-card-content>
-<!--        <mat-form-field>-->
-          <textarea matInput v="description" placeholder="Video description">Detailed video description</textarea>
-<!--        </mat-form-field>-->
-      </mat-card-content>
-      <button mat-stroked-button color="" type="submit" class="btn-block">Upload</button>
-    </form>
+      <form  [formGroup]="uploadGroup" class="login">
+
+
+        <div class="columns">
+          <mat-label *ngIf="selectedFiles; else newFile">{{selectedFiles.name}}</mat-label>
+          <ng-template #newFile>
+            <mat-label>Select video file</mat-label>
+          </ng-template>
+          <button (click)="fileInput.click()" mat-icon-button matSuffix>
+            <mat-icon>attach_file</mat-icon> Video File
+          </button>
+          <input #fileInput (change)="selectFile($event)" formControlName="main_file" hidden id="main_file" type="file">
+        </div>
+        <div class="columns">
+          <mat-label *ngIf="thumbFile; else newFileT">{{thumbFile.name}}</mat-label>
+          <ng-template #newFileT>
+            <mat-label>Select a thumbnail</mat-label>
+          </ng-template>
+          <button (click)="fileInputT.click()" mat-icon-button matSuffix>
+            <mat-icon>attach_file</mat-icon> Thumbnail
+          </button>
+          <input #fileInputT (change)="selectThumbFile($event)" formControlName="thumb" hidden id="thumb" type="file">
+        </div>
+        <div class="columns">
+          <mat-label>Video title</mat-label>
+          <input formControlName="title" id="title" matInput type="text" placeholder="Video title">
+        </div>
+        <div class="columns">
+          <mat-label>Video Description</mat-label>
+          <textarea formControlName="desc" id="desc" matInput placeholder="A detailed description of video" rows="8"
+                    type="text"></textarea>
+        </div>
+        <div class="columns">
+          <mat-label>Video Category</mat-label>
+          <select formControlName="cat" id="cat" matInput>
+            <option selected>Select</option>
+            <option *ngFor="let cat of categoryList" value="{{ cat.id }}">{{ cat.name }}</option>
+          </select>
+        </div>
+        <button class="btn-block" color="" mat-stroked-button type="submit" (click)="onUpload()">{{ upload_str }}</button>
+      </form>
+
+    </mat-card-content>
+
   </mat-card>
 </div>

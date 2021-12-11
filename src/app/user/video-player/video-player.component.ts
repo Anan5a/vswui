@@ -1,5 +1,7 @@
-import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import videojs from 'video.js'
+// declare var require: any;
+// require('@silvermine/videojs-quality-selector')(videojs);
 
 @Component({
   selector: 'app-video-player',
@@ -12,9 +14,10 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
   @Input()
   options: {
     fluid: boolean;
-    aspectRatio: string;
+    aspectRatio?: string;
     autoplay: boolean;
     controls: boolean;
+    poster?: string;
     sources: {
       src: string;
       type: string;
@@ -24,15 +27,19 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
 
   constructor(
     private elementRef: ElementRef,
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     // instantiate Video.js
+    // @ts-ignore
+    this.options['playbackRates'] = [0.5, 1, 1.5, 2]
     // @ts-ignore
     this.player = videojs(this.target.nativeElement, this.options, function onPlayerReady() {
       // @ts-ignore
       console.log('onPlayerReady', this);
     });
+    // this.player.addChild('QualitySelector')
   }
 
   ngOnDestroy() {

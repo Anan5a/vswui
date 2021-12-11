@@ -1,14 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.login-wrapper{
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.login-wrapper {
   margin-top: 10%;
   display: flex;
   justify-content: center;
 
 }
-
+.full-width{
+  width: 100%;
+}
 .overlay-timecode-right {
   position: absolute;
   top: 55%;
@@ -20,6 +29,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background: slategray;
   font-weight: bold;
 }
+
 .overlay-timecode-left {
   position: absolute;
   top: 55%;
@@ -31,4 +41,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background: slategray;
   font-weight: bold;
   max-height: 12px;
+}
+
+.background-Video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
 }

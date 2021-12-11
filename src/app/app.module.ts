@@ -43,13 +43,18 @@ import {MatBadgeModule} from "@angular/material/badge";
 import {MatDividerModule} from "@angular/material/divider";
 import {ReactiveFormsModule} from "@angular/forms";
 import { TableComponent } from './user/table/table.component';
-import { UserlistComponent } from './user/userlist/userlist.component';
+import { UserlistComponent } from './admin/userlist/userlist.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { HomepageContentComponent } from './user/homepage-content/homepage-content.component';
 import { FileUploadComponent } from './user/file-upload/file-upload.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { VideoPlayerComponent } from './user/video-player/video-player.component';
 import { PlayerComponent } from './user/player/player.component';
+import {JwttokenInterceptor} from "./jwttoken.interceptor";
+import {ErrorInterceptor} from "./error.interceptor";
+import { MyVideosComponent } from './user/my-videos/my-videos.component';
+import { ApprovalComponent } from './admin/approval/approval.component';
+import { AllvideoComponent } from './admin/allvideo/allvideo.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +70,9 @@ import { PlayerComponent } from './user/player/player.component';
     FileUploadComponent,
     VideoPlayerComponent,
     PlayerComponent,
+    MyVideosComponent,
+    ApprovalComponent,
+    AllvideoComponent,
   ],
   imports: [
     BrowserModule,
@@ -113,7 +121,10 @@ import { PlayerComponent } from './user/player/player.component';
     MatNativeDateModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwttokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [NavbarComponent]
 })
 export class AppModule { }
