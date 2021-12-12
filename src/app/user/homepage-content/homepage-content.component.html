@@ -3,7 +3,7 @@
     <mat-card class="hmcc">
       <a (click)="play()" routerLink="/video/play/{{ item.videoID }}">
         <mat-card-content>
-          <img mat-card-image src="//127.0.0.1:9001/{{ item.thumb }}">
+          <img mat-card-image src="{{ environment.imgbase+item.thumb }}">
           <span class="overlay-timecode-right">{{ d2tc(item.duration) }}</span>
           <!--        <span class="overlay-timecode-left"><mat-icon style="height: 12px;top: 5%;">remove_red_eye</mat-icon>8000</span>-->
         </mat-card-content>

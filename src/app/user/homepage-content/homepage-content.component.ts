@@ -16,7 +16,7 @@ export class HomepageContentComponent implements OnInit {
   videoList?: Video[]
   @Input()
   adminAction:boolean = false
-
+  environment = environment
   constructor(private http:HttpClient, private router:Router) { }
 
   ngOnInit(): void {
