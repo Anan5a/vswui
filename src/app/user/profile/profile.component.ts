@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Profile} from "../../interface/profile";
 import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +16,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.post<Profile>(`http://127.0.0.1:9001/app.php/profile`, {}).subscribe((data: Profile) => this.profile = data)
+    this.http.post<Profile>(`${environment.backend}/profile`, {}).subscribe((data: Profile) => this.profile = data)
   }
 
 }

@@ -3,6 +3,7 @@ import {Video} from "../../interface/video";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-homepage-content',
@@ -46,10 +47,10 @@ export class HomepageContentComponent implements OnInit {
   }
 
   adminActionApprove(videoID: number) {
-    this.http.post<any>(`//127.0.0.1:9001/app.php/approve-video`, {videoID:videoID}).subscribe((res)=>location.reload())
+    this.http.post<any>(`${environment.backend}/approve-video`, {videoID:videoID}).subscribe((res)=>location.reload())
   }
 
   adminActionDelete(videoID: number) {
-    this.http.post<any>(`//127.0.0.1:9001/app.php/delete-video`, {videoID:videoID}).subscribe((res)=>location.reload())
+    this.http.post<any>(`/${environment.backend}/delete-video`, {videoID:videoID}).subscribe((res)=>location.reload())
   }
 }

@@ -16,7 +16,7 @@ export class AuthServiceService {
 
   login(email: string, password: string) {
     //@ts-ignore
-    return this.http.post<User>('http://127.0.0.1:9001/app.php/login', {email, password})
+    return this.http.post<User>(`${environment.backend}/login`, {email, password})
       .pipe(
         map(user => {
           // store user details and jwt token in local storage to keep user logged in between page refreshes

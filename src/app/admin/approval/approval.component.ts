@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {Video} from "../../interface/video";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-approval',
@@ -15,7 +16,7 @@ export class ApprovalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.post<Video[]>(`//127.0.0.1:9001/app.php/approval`, {}).subscribe((res) => this.videoList = res)
+    this.http.post<Video[]>(`${environment.backend}/approval`, {}).subscribe((res) => this.videoList = res)
   }
 
 }

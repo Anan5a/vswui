@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Upload} from "tus-js-client";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import {Upload} from "tus-js-client";
 export class FileUploadService {
 
 // upload url
-  baseApiUrl = "http://127.0.0.1:9001/app.php/upload"
+  baseApiUrl = `${environment.backend}/upload`
   private uploadProgress: number | undefined;
   private changeDetectionRef: any;
 

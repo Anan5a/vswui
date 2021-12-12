@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Video} from "../../interface/video";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-allvideo',
@@ -16,7 +17,7 @@ export class AllvideoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.post<Video[]>(`//127.0.0.1:9001/app.php/video-list`, {}).subscribe((res) => this.videoList = res)
+    this.http.post<Video[]>(`${environment.backend}/video-list`, {}).subscribe((res) => this.videoList = res)
   }
 
 }

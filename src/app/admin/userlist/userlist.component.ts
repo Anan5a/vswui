@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from "../../interface/user";
 import {Video} from "../../interface/video";
 import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-userlist',
@@ -14,7 +15,7 @@ export class UserlistComponent implements OnInit {
   constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
-    this.http.post<User[]>(`//127.0.0.1:9001/app.php/user-list`, {}).subscribe((res) => this.users = res)
+    this.http.post<User[]>(`${environment.backend}/user-list`, {}).subscribe((res) => this.users = res)
 
   }
 

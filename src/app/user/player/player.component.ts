@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {Video, VideoX} from "../../interface/video";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-player',
@@ -28,6 +29,6 @@ export class PlayerComponent implements OnInit {
     this.breakpoint = $event.target.innerWidth <= 480 ? 1 : 2
   }
   getVideoData(){
-    return this.http.post<VideoX>(`http://127.0.0.1:9001/app.php/playback`, {videoID:this.currentVideoID})
+    return this.http.post<VideoX>(`${environment.backend}/playback`, {videoID:this.currentVideoID})
   }
 }

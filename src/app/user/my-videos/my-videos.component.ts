@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Video} from "../../interface/video";
 import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-my-videos',
@@ -13,7 +14,7 @@ export class MyVideosComponent implements OnInit {
   constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
-    this.http.post<Video[]>(`http://127.0.0.1:9001/app.php/my-videos`, {}).subscribe((data)=>this.videoList = data)
+    this.http.post<Video[]>(`${environment.backend}/my-videos`, {}).subscribe((data)=>this.videoList = data)
   }
 
 }
