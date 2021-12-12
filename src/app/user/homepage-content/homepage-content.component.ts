@@ -23,7 +23,7 @@ export class HomepageContentComponent implements OnInit {
     this.breakpoint = window.innerWidth <= 480 ? 1 : 4
     //get video list from server
     if (this.router.url == '/'){
-      this.http.post<Video[]>('http://127.0.0.1:9001/app.php/home',{}).subscribe((data:Video[])=>this.videoList = data)
+      this.http.post<Video[]>(`${environment.backend}/home`,{}).subscribe((data:Video[])=>this.videoList = data)
     }
   }
 

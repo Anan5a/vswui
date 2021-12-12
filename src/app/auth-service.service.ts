@@ -29,7 +29,7 @@ export class AuthServiceService {
 
   signup(email: string, password: string, c_password: string, birth_date: string) {
     //@ts-ignore
-    return this.http.post<any>('http://127.0.0.1:9001/app.php/signup', {email, password, c_password, birth_date})
+    return this.http.post<any>(`${environment.backend}/signup`, {email, password, c_password, birth_date})
       .pipe(
         map(() => {
 
