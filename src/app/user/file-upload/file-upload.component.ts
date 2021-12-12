@@ -4,6 +4,7 @@ import {Category} from "../../interface/category";
 import {CategoryListService} from "../../category-list.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-file-upload',
